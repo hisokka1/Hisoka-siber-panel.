@@ -1,16 +1,16 @@
 name: APK Yapici
-on: [push, pull_request]
+on: [push, workflow_dispatch]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Buildozer ile APK Bas
         uses: ArtemGr/buildozer-action@v1
         with:
           command: buildozer -v android debug
       - name: APK'yi Yukle
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: siber-panel-apk
           path: bin/*.apk
